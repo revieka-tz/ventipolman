@@ -27,7 +27,7 @@
    12.Pin33/GPIO21/SDA  ->  SDA-RTC DS3231
    13.Pin/GPIO32/SDA  ->  SDA-RTC DS3231
    ===========================================
-
+    Bismillah
 */
 #include <ESP32_Servo.h>
 #include <doxygen.h>
@@ -89,7 +89,6 @@ NexNumber nSecond = NexNumber(1, 18, "n4");
 NexNumber nYear = NexNumber(1, 21, "n7");
 NexNumber nMonth = NexNumber(1, 19, "n5");
 NexNumber nDate = NexNumber(1, 20, "n6");
-
 
 //Register a button object to the touch event list
 NexTouch *nex_listen_list[] = {

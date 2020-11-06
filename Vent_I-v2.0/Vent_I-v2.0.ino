@@ -2,8 +2,8 @@
    ===========================================
    AutoREV
    ===========================================
-   Project  : Ventilator Upgrade
-   Date     : 13/08/2020
+   Project  : Ventilator Upgrade - v2
+   Date     : 06/11/2020
    Author   : REF
    ===========================================
    Note: Test
@@ -25,9 +25,9 @@
    10.Pin29/GPIO5 /SS   ->  CS-SD Card
    11.Pin36/GPIO22/SCL  ->  SCL-RTC DS3231
    12.Pin33/GPIO21/SDA  ->  SDA-RTC DS3231
-   13.
+   13.Pin/GPIO32/SDA  ->  SDA-RTC DS3231
    ===========================================
-    Bismillah
+
 */
 #include <ESP32_Servo.h>
 #include <doxygen.h>
@@ -60,10 +60,10 @@
 #include <FirebaseESP32.h>
 #include <WiFi.h>
 
-#define FIREBASE_HOST "ventilator-by-polman.firebaseio.com"
-#define FIREBASE_AUTH "jGmlJR2zkmjwckZEe14zMTqFyEudVBqrnUVozkt8"
-#define ssid "AP_REL"
-#define pass "AENamloP2019"
+#define FIREBASE_HOST "https://venti-polman.firebaseio.com/"
+#define FIREBASE_AUTH "jPfiu6OSKpUHuu81Lqbyjoz6BWv3LqbvrAzkbBWT"
+#define ssid "REF"
+#define pass "repirepi"
 
 FirebaseData firebaseData;
 
@@ -89,6 +89,7 @@ NexNumber nSecond = NexNumber(1, 18, "n4");
 NexNumber nYear = NexNumber(1, 21, "n7");
 NexNumber nMonth = NexNumber(1, 19, "n5");
 NexNumber nDate = NexNumber(1, 20, "n6");
+
 
 //Register a button object to the touch event list
 NexTouch *nex_listen_list[] = {
@@ -187,8 +188,6 @@ void loop() {
       p1_n1.setValue(tempC);
       btnPress.Set_background_image_pic(onColor);
       btnPress.Set_press_background_image_pic2(offColor);
-
-      Firebase.setString("LED_STATUS", "ON");
     }
     else if (flagBtnPress == 0) {
       esc.write(52);
@@ -198,8 +197,6 @@ void loop() {
       p1_n1.setValue(tempC);
       btnPress.Set_background_image_pic(offColor);
       btnPress.Set_press_background_image_pic2(onColor);
-
-      Firebase.setString("LED_STATUS", "OFF");
     }
     logdata();
 
